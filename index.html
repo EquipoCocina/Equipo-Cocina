@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Etiqueta Inventario</title>
+  <style>
+    body {
+      width: 62mm;
+      height: 60mm;
+      margin: 0;
+      padding: 4mm;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      box-sizing: border-box;
+    }
+    .etiqueta {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid black;
+      padding: 2mm;
+    }
+    .linea {
+      margin-bottom: 3mm;
+    }
+    .titulo {
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .codigo-barra {
+      width: 100%;
+      text-align: center;
+      margin-top: auto;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="etiqueta">
+    <div class="linea titulo" id="producto">Producto: {{Producto}}</div>
+    <div class="linea">Peso: {{Peso}}</div>
+    <div class="linea">Cantidad: {{Cantidad}} {{Unidad}}</div>
+    <div class="linea">Recepción: {{FechaRecepcion}}</div>
+    <div class="linea">Caducidad: {{FechaCaducidad}}</div>
+    <div class="codigo-barra">
+      <img src="https://barcode.tec-it.com/barcode.ashx?data={{Codigo}}&code=Code128&translate-esc=false" alt="Código de barras">
+    </div>
+  </div>
+</body>
+</html>
