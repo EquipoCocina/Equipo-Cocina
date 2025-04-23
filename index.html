@@ -42,14 +42,30 @@
 </head>
 <body>
   <div class="etiqueta">
-    <div class="linea titulo" id="producto">Producto: {{Producto}}</div>
-    <div class="linea">Peso: {{Peso}}</div>
-    <div class="linea">Cantidad: {{Cantidad}} {{Unidad}}</div>
-    <div class="linea">Recepción: {{FechaRecepcion}}</div>
-    <div class="linea">Caducidad: {{FechaCaducidad}}</div>
+    <div class="linea titulo" id="producto"></div>
+    <div class="linea" id="peso"></div>
+    <div class="linea" id="cantidad"></div>
+    <div class="linea" id="recepcion"></div>
+    <div class="linea" id="caducidad"></div>
     <div class="codigo-barra">
-      <img src="https://barcode.tec-it.com/barcode.ashx?data={{Codigo}}&code=Code128&translate-esc=false" alt="Código de barras">
+      <img id="barcode" src="" alt="Código de barras">
     </div>
   </div>
+
+  <script>
+    function getParam(param) {
+      const url = new URL(window.location.href);
+      return decodeURIComponent(url.searchParams.get(param) || "");
+    }
+
+    document.getElementById("producto").innerText = "Producto: " + getParam("Producto");
+    document.getElementById("peso").innerText = "Peso: " + getParam("Peso");
+    document.getElementById("cantidad").innerText = "Cantidad: " + getParam("Cantidad") + " " + getParam("Unidad");
+    document.getElementById("recepcion").innerText = "Recepción: " + getParam("FechaRecepcion");
+    document.getElementById("caducidad").innerText = "Caducidad: " + getParam("FechaCaducidad");
+
+    const codigo = getParam("Codigo");
+    document.getElementById("barcode").src = "https://barcode.tec-it.com/barcode.ashx?data=" + codigo + "&code=Code128&translate-esc=false";
+  </script>
 </body>
 </html>
